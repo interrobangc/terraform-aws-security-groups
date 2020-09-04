@@ -1,9 +1,9 @@
 resource "aws_security_group" "allow_ingress" {
-  count = "${var.create_security_groups}"
+  count = var.create_security_groups
 
   name        = "allow_ingress"
   description = "Allow all inbound traffic"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 0
@@ -15,16 +15,16 @@ resource "aws_security_group" "allow_ingress" {
   tags = {
     Terraform = "true"
     Name      = "allow_ingress"
-    env       = "${var.env}"
+    env       = var.env
   }
 }
 
 resource "aws_security_group" "allow_egress" {
-  count = "${var.create_security_groups}"
+  count = var.create_security_groups
 
   name        = "allow_egress"
   description = "Allow all outbound traffic"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   egress {
     from_port   = 0
@@ -36,16 +36,16 @@ resource "aws_security_group" "allow_egress" {
   tags = {
     Terraform = "true"
     Name      = "allow_egress"
-    env       = "${var.env}"
+    env       = var.env
   }
 }
 
 resource "aws_security_group" "public_web" {
-  count = "${var.create_security_groups}"
+  count = var.create_security_groups
 
   name        = "public_web"
   description = "Allow public http/s ingress"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 80
@@ -64,16 +64,16 @@ resource "aws_security_group" "public_web" {
   tags = {
     Terraform = "true"
     Name      = "public_web"
-    env       = "${var.env}"
+    env       = var.env
   }
 }
 
 resource "aws_security_group" "public_ssh" {
-  count = "${var.create_security_groups}"
+  count = var.create_security_groups
 
   name        = "public_ssh"
   description = "Allow public ssh ingress"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 22
@@ -85,6 +85,6 @@ resource "aws_security_group" "public_ssh" {
   tags = {
     Terraform = "true"
     Name      = "public_ssh"
-    env       = "${var.env}"
+    env       = var.env
   }
 }
