@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow_ingress" {
-  count = var.create_security_groups
+  count = var.create_security_groups ? 1 : 0
 
   name        = "allow_ingress"
   description = "Allow all inbound traffic"
@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ingress" {
 }
 
 resource "aws_security_group" "allow_egress" {
-  count = var.create_security_groups
+  count = var.create_security_groups ? 1 : 0
 
   name        = "allow_egress"
   description = "Allow all outbound traffic"
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow_egress" {
 }
 
 resource "aws_security_group" "public_web" {
-  count = var.create_security_groups
+  count = var.create_security_groups ? 1 : 0
 
   name        = "public_web"
   description = "Allow public http/s ingress"
@@ -69,7 +69,7 @@ resource "aws_security_group" "public_web" {
 }
 
 resource "aws_security_group" "public_ssh" {
-  count = var.create_security_groups
+  count = var.create_security_groups ? 1 : 0
 
   name        = "public_ssh"
   description = "Allow public ssh ingress"
